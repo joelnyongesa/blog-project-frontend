@@ -13,9 +13,10 @@ import { useEffect, useState } from 'react'
 
 function App() {
   const [user, setUser] = useState(null);
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch("/api/check_session", {
+    fetch(`${baseUrl}/check_session`, {
       credentials: "include",
     }).then((response) => {
       if(response.ok) {

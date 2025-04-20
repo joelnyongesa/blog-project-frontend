@@ -47,6 +47,7 @@ export default function Header({ user, onLogout }) {
     message: '',
     severity: 'info',
   });
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   const toggleDrawer = (newOpen) => () => {
     setDrawerOpen(newOpen);
@@ -54,9 +55,9 @@ export default function Header({ user, onLogout }) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/logout", { 
+      const response = await fetch(`${baseUrl}logout`, { 
         method: "DELETE",
-        credentials: "include" // Add if needed for cookie-based auth
+        credentials: "include"
       });
 
       if (!response.ok) {

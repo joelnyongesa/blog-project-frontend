@@ -32,6 +32,7 @@ const CreateArticle = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   const handleImageUpload = async (file) => {
     setError('');
@@ -41,7 +42,7 @@ const CreateArticle = () => {
       const formData = new FormData();
       formData.append('image', file);
   
-      const response = await fetch('/api/upload-image', {
+      const response = await fetch(`${baseUrl}/upload-image`, {
         method: 'POST',
         body: formData,
         credentials: 'include',
@@ -74,11 +75,10 @@ const CreateArticle = () => {
         throw new Error('Preview image is required');
       }
 
-      const response = await fetch('/api/articles/create', {
+      const response = await fetch(`${baseUrl}/articles/create`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(formData),
         credentials: 'include'

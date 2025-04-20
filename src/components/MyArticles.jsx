@@ -20,11 +20,12 @@ const MyArticles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const theme = useTheme();
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch('/api/my-articles', {
+        const response = await fetch(`${baseUrl}/my-articles`, {
           credentials: 'include'
         });
         

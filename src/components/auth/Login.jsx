@@ -57,12 +57,13 @@ function Login({ onLogin }) {
     severity: 'info',
   });
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch(`${baseUrl}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

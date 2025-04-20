@@ -20,9 +20,10 @@ import { useTheme } from '@mui/material/styles';
 function Home() {
   const [articles, setArticles] = useState([]);
   const theme = useTheme();
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch("/api/articles")
+    fetch(`${baseUrl}/articles`)
       .then((r) => r.json())
       .then(setArticles)
   }, []);

@@ -75,10 +75,11 @@ function Article() {
   });
   const { id } = useParams();
   const theme = useTheme();
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     setState({ article: null, error: null, status: "pending" });
-    fetch(`/api/articles/${id}`)
+    fetch(`${baseUrl}/articles/${id}`)
       .then(r => {
         if (r.ok) return r.json().then(data => ({ data, error: null }));
         return r.json().then(error => ({ data: null, error }));
